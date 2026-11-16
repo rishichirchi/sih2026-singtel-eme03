@@ -1196,6 +1196,19 @@ body.showhud .hud{display:flex!important}
 .statx .ss{margin-top:34px;opacity:0;transition:opacity .4s 1.8s}
 .statx.on .st2{opacity:1;transform:none}.statx.on .ss{opacity:1}
 .jump .statx .sn span{animation-duration:1ms!important;animation-delay:0s!important}
+.intro{position:absolute;inset:0;z-index:30;background:radial-gradient(60% 60% at 50% 40%,#141925,#05060a);text-align:center;opacity:0;transition:opacity .5s ease}
+.intro.on{opacity:1}.intro.off{opacity:0!important;transition:opacity .6s ease!important}
+.intro .ik,.intro .it,.intro .im span,.intro .ip{opacity:0;transform:translateY(14px);transition:opacity .45s ease var(--d),transform .5s cubic-bezier(.2,.8,.2,1) var(--d)}
+.intro.on .ik,.intro.on .it,.intro.on .im span,.intro.on .ip{opacity:1;transform:none}
+.intro .ik{position:absolute;left:0;right:0;top:520px;font-size:28px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#ff6b80;--d:700ms}
+.intro .it{position:absolute;left:0;right:0;top:570px;font-size:140px;font-weight:800;letter-spacing:-.05em;color:#fff;line-height:1.05;--d:950ms}
+.intro .im{position:absolute;left:220px;right:220px;top:790px;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 18px}
+.intro .im span{padding:12px 26px;border-radius:999px;background:#141822;border:1.5px solid #2a2f3b;font-size:28px;font-weight:600;color:#e9ebf1}
+.intro .ip{position:absolute;left:0;right:0;top:990px;font-size:22px;color:#8b92a3;--d:2100ms}
+.jump .intro *{transition:none!important}
+.intro .im{left:480px;right:480px}
+.intro .im{left:360px;right:360px}
+.intro .im{left:80px;right:80px;flex-wrap:nowrap}
 
 </style>
 </head>
@@ -2284,8 +2297,8 @@ window.QA.splice(window.QA.findIndex(q => q.id === "A8") + 1, 0,
       <div id="${p}h2" data-fx class="fx hand glow">→ connect what we already know!</div></div></div>
     <div class="win chat" style="left:1290px;top:560px;width:560px;height:420px">
       <div class="chead"><div class="av" style="background:#5b6cff">SIH</div><div><b>SIH 2026 Team</b><small>4 members</small></div></div>
-      <div class="cbody"><div id="${p}h3" data-fx class="fx m1 glow"><b style="color:#53bdeb">Aditi</b>What if we connect all the customer data?<span class="t">2:41 AM</span></div>
-      <div class="m1"><b style="color:#ffb86c">Rahul</b>Mentor said: how is that different from a CRM?<span class="t">2:43 AM</span></div>
+      <div class="cbody"><div id="${p}h3" data-fx class="fx m1 glow"><b style="color:#53bdeb">Arpan</b>What if we connect all the customer data?<span class="t">2:41 AM</span></div>
+      <div class="m1"><b style="color:#ffb86c">Rishi</b>Mentor said: how is that different from a CRM?<span class="t">2:43 AM</span></div>
       <div class="m2">But how do we turn that into actual sales decisions?<span class="t">2:46 AM</span></div></div></div>
     <div class="dock"><i style="background:linear-gradient(#4aa3ff,#1268e8)"></i><i style="background:conic-gradient(#ea4335 0 33%,#fbbc05 0 66%,#34a853 0)"></i><i style="background:linear-gradient(#ffe066,#f7c62f)"></i><i style="background:linear-gradient(#3ddc84,#128c7e)"></i><i style="background:linear-gradient(#6e7bff,#3d3fd8)"></i><i style="background:linear-gradient(#ececec,#bdbdbd)"></i></div>`;
   }
@@ -2295,7 +2308,13 @@ window.QA.splice(window.QA.findIndex(q => q.id === "A8") + 1, 0,
   const dots = (p, pins, links) => `<svg style="position:absolute;inset:0;width:1920px;height:1080px;overflow:visible;pointer-events:none">${links.map(([a, b], i) => `<path id="${p}L${i}" data-fx class="fx draw" pathLength="1" d="${curve(PA[a], PA[b])}" style="fill:none;stroke:#ff3355;stroke-width:4;stroke-linecap:round;--d:${300 + i * 140}ms"/>`).join("")}</svg>` +
     pins.map((k, i) => `<div id="${p}P${k}" data-fx class="fx pin" style="left:${PA[k][0]}px;top:${PA[k][1]}px;--d:${i * 90}ms"></div>`).join("");
 
-  const sceneA = scene("sA", { ex: "356px", ey: "264px" }, desktop("a") + dots("a", A_PINS, A_LINKS) +
+  const TEAM = ["Arpan Tomar", "Prayag Srivastava", "Rishi Chirchi", "Joshua Wong", "Shreya Chintakunta"];
+  const INTRO = `<div id="aIn" data-fx class="fx intro">
+    <canvas class="twin" data-twin="hero" data-on="aIn" data-cx="960" data-cy="300" data-r="150" width="1920" height="1080" style="position:absolute;left:0;top:0;width:1920px;height:1080px"></canvas>
+    <div class="ik">SIH 2026 &nbsp;·&nbsp; EME Team 03</div>
+    <div class="it">Back to the Future</div>
+    <div class="im">${TEAM.map((n, i) => `<span style="--d:${1300 + i * 120}ms">${n}</span>`).join("")}</div></div>`;
+  const sceneA = scene("sA", { ex: "356px", ey: "264px" }, INTRO + desktop("a") + dots("a", A_PINS, A_LINKS) +
     `<div id="aDim" data-fx class="fx dim"></div>` +
     F("aQ", "f cap", "top:330px;font-size:76px;line-height:1.12", `What if Singtel's next big sales opportunity<br>is already somewhere within the organisation…<div style="color:#ff3355;margin-top:18px">but nobody has connected the dots yet?</div>`, 300));
 
@@ -2610,7 +2629,8 @@ window.QA.splice(window.QA.findIndex(q => q.id === "A8") + 1, 0,
   const ids = (p, n) => Array.from({ length: n }, (_, i) => p + i);
   const OG = [...ids("og", 6), ...ids("ov", 4), "dGlow"];
   const ST = [
-    { s: 0, l: [0, 1], on: ["sA", "ah1", "ah2", "ah3", ...A_PINS.map(k => "aP" + k), ...ids("aL", A_LINKS.length)] },
+    { s: 0, txt: "Hi everyone, we're Back to the Future, SIH 2026 EME Team 03.", on: ["sA", "aIn"] },
+    { s: 0, l: [0, 1], off: ["aIn"], on: ["sA", "ah1", "ah2", "ah3", ...A_PINS.map(k => "aP" + k), ...ids("aL", A_LINKS.length)] },
     { s: 0, l: [2], on: ["aDim", "aQ"] },
     { s: 1, l: [3], off: ["sAx"], on: ["sB"] },
     { s: 1, l: [4], off: ["sBx"], on: ["sC", ...ids("cw", 5), "cS"], add: [["cCam", "z1"]] },
