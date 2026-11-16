@@ -1209,6 +1209,8 @@ body.showhud .hud{display:flex!important}
 .intro .im{left:480px;right:480px}
 .intro .im{left:360px;right:360px}
 .intro .im{left:80px;right:80px;flex-wrap:nowrap}
+.dir .dnav,.dir .dside{display:none}
+.dir .dmain{left:50%;top:56%;right:auto;width:1240px;display:block;transform:translate(-50%,-50%) scale(1.28)}
 
 </style>
 </head>
@@ -2329,7 +2331,7 @@ window.QA.splice(window.QA.findIndex(q => q.id === "A8") + 1, 0,
       <div class="card"><h3>Cases <span>3</span></h3><div class="li">Outage · Jurong site<span class="ctag g">Closed</span></div><div class="li">Latency · Site 2<span class="ctag g">Closed</span></div></div></div></div>
     <div class="notif"><i></i><div><b>Calendar</b>ABC Logistics · account review<br><span style="color:#6b6b73">10:00 – 11:00</span></div></div>`;
   /* ---------- B: Singtel people directory ---------- */
-  const sceneB = scene("sB", { ox: "356px", oy: "264px", ex: "1270px", ey: "760px" }, `<div class="dir">
+  const sceneB = scene("sB", { ox: "356px", oy: "264px", ex: "960px", ey: "560px" }, `<div class="dir">
     <div class="dtop"><span class="wm">Singtel</span><span class="dsep"></span><span class="dapp">People</span><div class="dsrch">🔍&nbsp; Search people, teams, accounts</div><div class="dme">SH</div></div>
     <div class="dnav">${["Home", "People", "Teams", "Accounts", "Calendar"].map((t, i) => `<div class="${i === 1 ? "on" : ""}">${t}</div>`).join("")}</div>
     <div class="dmain">
