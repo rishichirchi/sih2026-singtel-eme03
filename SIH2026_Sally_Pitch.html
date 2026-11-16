@@ -1173,6 +1173,29 @@ body.showhud .hud{display:flex!important}
 #fFp .cap{top:230px!important}
 #fFp .won{top:340px}
 #fFp .fprint{left:780px;top:440px;width:360px;height:408px}
+.statx{position:absolute;left:0;right:0;top:250px;text-align:center;z-index:6}
+.statx .sn{font-size:300px;font-weight:800;letter-spacing:-.06em;line-height:1;color:#ff3355}
+.statx .st2{font-size:52px;font-weight:600;color:#fff;letter-spacing:-.02em;line-height:1.2;max-width:1400px;margin:30px auto 0}
+.statx .st2 em{font-style:normal;color:#ff6b80}
+.statx .ss{font-size:24px;color:#8b92a3;margin-top:40px}
+#dStBg{z-index:5}
+/* animated stats */
+@property --n{syntax:'<integer>';inherits:false;initial-value:0}
+.statx{top:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:110px;text-align:left}
+.sgrid{display:grid;grid-template-columns:repeat(10,38px);gap:14px}
+.sgrid i{width:38px;height:38px;border-radius:50%;background:#1d2230;transform:scale(.4);opacity:0;transition:opacity .2s var(--d),transform .3s cubic-bezier(.2,.9,.3,1.4) var(--d),background .3s var(--d),box-shadow .3s var(--d)}
+.statx.on .sgrid i{opacity:1;transform:none}
+.statx.on .sgrid i.h{background:#ff3355;box-shadow:0 0 14px rgba(255,51,85,.7)}
+.sbody{width:860px}
+.statx .sn{font-size:260px;font-weight:800;letter-spacing:-.06em;line-height:.9;color:#ff3355}
+.sn span{--n:0;counter-reset:n var(--n)}.sn span::after{content:counter(n)}
+.statx.on .sn span{animation:cnt 1.6s cubic-bezier(.2,.7,.2,1) .2s forwards}
+@keyframes cnt{to{--n:var(--to)}}
+.sn{--to:0}.sn span{--to:inherit}
+.statx .st2{font-size:48px;margin:26px 0 0;max-width:none;opacity:0;transform:translateY(14px);transition:opacity .4s 1.3s,transform .45s 1.3s}
+.statx .ss{margin-top:34px;opacity:0;transition:opacity .4s 1.8s}
+.statx.on .st2{opacity:1;transform:none}.statx.on .ss{opacity:1}
+.jump .statx .sn span{animation-duration:1ms!important;animation-delay:0s!important}
 
 </style>
 </head>
@@ -2321,6 +2344,8 @@ window.QA.splice(window.QA.findIndex(q => q.id === "A8") + 1, 0,
     </div></div><div class="base"></div><div class="shadow"></div></div></div>
     ${F("cS", "f capbar", "", "Scattered across <em>CRM records</em>, <em>conversations</em>, <em>market research</em> &amp; <em>individual experiences</em>", 1800)}
     <div id="cDim" data-fx class="fx dim"></div>
+<div id="cStBg" data-fx class="fx dim" style="background:radial-gradient(60% 60% at 50% 50%,#141925,#07080b);z-index:5"><canvas class="twin" data-twin="hero" data-on="cStBg" data-cx="1700" data-cy="200" data-r="120" width="1920" height="1080" style="position:absolute;left:0;top:0;width:1920px;height:1080px;opacity:.35"></canvas></div>
+    ${F("cSt", "f statx", "", `<div class="sgrid">${Array.from({ length: 100 }, (_, i) => `<i class="${i < 46 ? "h" : ""}" style="--d:${200 + i * 14}ms"></i>`).join("")}</div><div class="sbody"><div class="sn" style="--to:46"><span></span>%</div><div class="st2">of sales professionals using AI agents say <em>data quality issues hurt their sales</em></div><div class="ss">Source: Salesforce, State of Sales report</div></div>`, 0)}
     ${F("cRh", "f cap", "top:230px;font-size:52px;font-weight:600", "Even with today's sales intelligence tools, Josh still has to…", 0)}
     <div class="bubs">${BUB("cR0", "🧩", "Synthesise <em>information</em>", 150)}${BUB("cR1", "◎", "Filter <em>important data</em>", 300)}${BUB("cR2", "→", "Create <em>actionables</em>", 450)}</div>
     ${F("cRb", "f banner", "", "Missing insights = <em>missing business opportunity</em>", 1300)}
@@ -2368,6 +2393,8 @@ window.QA.splice(window.QA.findIndex(q => q.id === "A8") + 1, 0,
       <div class="aw teams iw" style="left:1100px"><div class="ab"><span class="tm">T</span>Teams · Chat</div><div class="ac"><div class="tq">@Sally what's changed at ABC?</div>
         <div class="tmsg" style="margin-top:12px"><span class="mav" style="background:radial-gradient(circle at 30% 30%,#ff5a74,#e4002b 60%,#9c001d)"></span><div><b>Sally</b><div class="tb2">Expansion into Vietnam. Worth exploring: cross-border connectivity.</div></div></div></div></div></div>
         <div class="toolt">Sally works quietly in the background…<em>bringing intelligence straight into the tools Josh already uses</em></div>`, 500)}
+      <div id="dStBg" data-fx class="fx dim" style="background:radial-gradient(60% 60% at 50% 50%,#141925,#07080b)"><canvas class="twin" data-twin="hero" data-on="dStBg" data-cx="1700" data-cy="180" data-r="120" width="1920" height="1002" style="position:absolute;left:0;top:0;width:1920px;height:1002px;opacity:.35"></canvas></div>
+      ${F("dSt", "f statx", "", `<div class="sgrid">${Array.from({ length: 100 }, (_, i) => `<i class="${i < 70 ? "h" : ""}" style="--d:${200 + i * 14}ms"></i>`).join("")}</div><div class="sbody"><div class="sn" style="--to:70"><span></span>%</div><div class="st2">of surveyed Singapore businesses plan to <em>expand overseas within three years</em></div><div class="ss">Source: United Overseas Bank (UOB) survey</div></div>`, 0)}
       ${ttl("dAxT", "Sally in action", "ABC Logistics announces an expansion into Vietnam")}
       ${bubs("dAx", 330, [["📰", "Expansion into Vietnam", "announcement"], ["🔌", "Existing connectivity services", "from the CRM"], ["💬", "Previous conversations", "with ABC's team"], ["✦", "Cross-border connectivity opportunity", "", "hot"]], 300, 340)}
       ${F("dAxq", "f eqs", "", `<span style="left:580px">+</span><span style="left:960px">+</span><span style="left:1340px">=</span>`, 700)}
@@ -2587,11 +2614,13 @@ window.QA.splice(window.QA.findIndex(q => q.id === "A8") + 1, 0,
     { s: 0, l: [2], on: ["aDim", "aQ"] },
     { s: 1, l: [3], off: ["sAx"], on: ["sB"] },
     { s: 1, l: [4], off: ["sBx"], on: ["sC", ...ids("cw", 5), "cS"], add: [["cCam", "z1"]] },
-    { s: 1, l: [5], off: ["cS"], on: ["cDim", "cRh", "cR0", "cR1", "cR2", "cRb"] },
+    { s: 1, txt: "Salesforce's latest State of Sales report found that 46% of sales professionals using AI agents say data quality issues hurt their sales.", off: ["cS"], on: ["cStBg", "cSt"] },
+    { s: 1, l: [5], off: ["cStBg", "cSt"], on: ["cDim", "cRh", "cR0", "cR1", "cR2", "cRb"] },
     { s: 2, l: [6], off: ["cRh", "cR0", "cR1", "cR2", "cRb"], on: ["cQ", "cQs"] },
     { s: 2, l: [7], off: ["sCx"], on: ["sD", "dTw", "dTlA", "dHs", "dC"] },
     { s: 2, l: [8], off: ["dC", "dHs", "dTlA"], on: ["dTools"] },
-    { s: 3, l: [9], off: ["dTw", "dTools"], on: ["dAxT", ...ids("dAx", 4), "dAxq"] },
+    { s: 3, txt: "United Overseas Bank (UOB) found that 70% of surveyed Singapore businesses plan to expand overseas within three years. These plans give account managers a reason to investigate changing customer needs.", off: ["dTools"], on: ["dStBg", "dSt"] },
+    { s: 3, l: [9], off: ["dTw", "dTools", "dStBg", "dSt"], on: ["dAxT", ...ids("dAx", 4), "dAxq"] },
     { s: 3, l: [10], off: ["dAxT", ...ids("dAx", 4), "dAxq"], on: ["dKnT", ...ids("dKn", 4), "dKnJ"] },
     { s: 3, l: [11], add: [["dKnJ", "go"]], off: ["sDx", "dKnT", ...ids("dKn", 4), "dKnJ"], on: ["sE", "eT0", "eU", "eF"] },
     { s: 3, l: [12], on: ["eDim", "eS"] },
@@ -2605,7 +2634,7 @@ window.QA.splice(window.QA.findIndex(q => q.id === "A8") + 1, 0,
     { s: 7, l: [22], off: ["sFx"], on: ["sH", "hh1", "hh2", "hh3", ...H_PINS.map(k => "hP" + k), ...ids("hL", H_LINKS.length), "hC"] },
     { s: 7, l: [23], off: ["hC"], on: ["hDim", "hFin", "hQ", "hQ2", "hT"] }
   ];
-  window.BEATS = ST.map(b => ({ s: b.s, cam: [960, 540, 1], on: b.on || [], off: b.off || [], show: b.show || [], add: b.add || [], line: b.l.map(i => L[i]).join(" ") }));
+  window.BEATS = ST.map(b => ({ s: b.s, cam: [960, 540, 1], on: b.on || [], off: b.off || [], show: b.show || [], add: b.add || [], line: b.txt || b.l.map(i => L[i]).join(" ") }));
 })();
 
 </script>
